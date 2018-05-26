@@ -1,0 +1,21 @@
+pkgname=ruby-bash-completion-git
+pkgver=20140518
+pkgrel=1
+pkgdesc="Bash completion for ruby, jruby, rake, gem, bundle, and rails."
+arch=(any)
+url="https://github.com/mernen/completion-ruby"
+license=('MIT')
+depends=('ruby' 'bash-completion')
+makedepends=('git')
+source=('git+https://github.com/mernen/completion-ruby')
+md5sums=('SKIP')
+
+package(){
+    cd completion-ruby
+    install -D -m 644 completion-ruby "${pkgdir}/usr/share/bash-completion/completions/ruby"
+    install -D -m 644 completion-jruby "${pkgdir}/usr/share/bash-completion/completions/jruby"
+    install -D -m 644 completion-rake "${pkgdir}/usr/share/bash-completion/completions/rake"
+    install -D -m 644 completion-gem "${pkgdir}/usr/share/bash-completion/completions/gem"
+    install -D -m 644 completion-bundle "${pkgdir}/usr/share/bash-completion/completions/bundle"
+    install -D -m 644 completion-rails "${pkgdir}/usr/share/bash-completion/completions/rails"
+}
