@@ -1,0 +1,4 @@
+.gitignore
+pkg/
+src/
+*-*.pkg.tar*

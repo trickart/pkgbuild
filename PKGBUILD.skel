@@ -1,0 +1,25 @@
+pkgname=
+pkgver=
+pkgrel=1
+pkgdesc=""
+arch=('i686' 'x86_64')
+url=""
+license=('custom')
+depends=('')
+makedepends=('')
+source=(git+
+	http://)
+sha256sums=('')
+
+build() {
+    cd "${srcdir}/src"
+    ./configure
+    make
+}
+package(){
+    cd $pkgname
+    #make installを使う場合
+    make DESTDIR="$pkgdir/" install
+    #個別に入れる場合
+    install -D -m 755 hoge "${pkgdir}/path/hoge"
+}
