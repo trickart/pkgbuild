@@ -1,0 +1,16 @@
+pkgname=rails-bash-completion-git
+pkgver=20131110
+pkgrel=1
+pkgdesc="Bash completion for Ruby on Rails"
+arch=(any)
+url="https://github.com/jweslley/rails_completionany"
+license=('GPL3')
+depends=('ruby' 'bash-completion')
+makedepends=('git')
+source=('git+https://github.com/jweslley/rails_completion')
+md5sums=('SKIP')
+
+package(){
+    cd rails_completion
+    install -D -m 644 rails.bash "${pkgdir}/usr/share/bash-completion/completions/rails"
+}
