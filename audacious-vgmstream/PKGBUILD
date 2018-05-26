@@ -1,0 +1,18 @@
+pkgname=audacious-vgmstream
+pkgver=20140911
+pkgrel=1
+pkgdesc="vgmstream plugin for audacious"
+arch=('i686' 'x86_64')
+url="https://github.com/eppixx/audacious-vgmstream"
+license=('custom')
+depends=('audacious' 'libvorbis' 'mpg123')
+makedepends=('make')
+source=(git+https://github.com/eppixx/audacious-vgmstream)
+sha256sums=('SKIP')
+
+build() {
+    cd "${srcdir}/src"
+    ./bootstrap
+    ./configure
+    make -f Makefile.unix
+    }
