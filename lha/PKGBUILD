@@ -1,0 +1,21 @@
+pkgname=lha
+pkgver=1.14i_ac20050924p1
+pkgrel=1
+pkgdesc="lha for unix"
+arch=('i686' 'x86_64')
+url="http://lha.osdn.jp/"
+license=('custom')
+depends=('')
+makedepends=('')
+source=('http://osdn.jp/frs/redir.php?m=jaist&f=%2Flha%2F22231%2Flha-1.14i-ac20050924p1.tar.gz')
+sha256sums=('SKIP')
+
+build() {
+    cd "${srcdir}/${pkgname}-$(echo ${pkgver}|sed s/_/-/)"
+    ./configure --enable-multibyte-filename=utf8
+    make
+}
+package(){
+    cd "${srcdir}/${pkgname}-$(echo ${pkgver}|sed s/_/-/)"
+    install -D src/lha "${pkgdir}/usr/bin/lha"
+}
