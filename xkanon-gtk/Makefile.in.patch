@@ -1,0 +1,12 @@
+diff -u -r orig/Makefile.in fix/Makefile.in
+--- orig/Makefile.in	2008-01-06 15:20:00.000000000 +0900
++++ fix/Makefile.in	2015-07-05 20:15:30.746110732 +0900
+@@ -40,7 +40,7 @@
+ 	-mkdir -p $(LOCALEDIR)/ja/LC_MESSAGES
+ 	-cp -f ayusys_gtk2.ja.mo $(LOCALEDIR)/ja/LC_MESSAGES/ayusys_gtk2.mo
+ 
+-ayusys_gtk2.ja.mo: ayusys_gtk2.ja.po
++ayusys_gtk2.ja.mo: #ayusys_gtk2.ja.po
+ 	-msgfmt -o ayusys_gtk2.ja.mo ayusys_gtk2.ja.po
+ 
+ # シェルスクリプトをつくる

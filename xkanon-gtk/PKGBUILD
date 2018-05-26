@@ -1,0 +1,40 @@
+pkgname=xkanon-gtk
+pkgver=090830
+pkgrel=1
+pkgdesc='interpreter for AVG32 games.'
+arch=( 'i686' 'x86_64' )
+url=http://www.creator.club.ne.jp/~jagarl/xkanon.html
+license=( 'GPL' )
+depends=( 'gtk2' )
+
+source=(
+    "http://www.creator.club.ne.jp/~jagarl/xkanon-gtk2-090830.tar.gz"
+    "http://www.creator.club.ne.jp/~jagarl/xkanon-071209.tar.gz"
+    'Makefile.in.patch'
+)
+noextract=("xkanon-071209.tar.gz")
+sha256sums=(
+    '2c60486627b49bc298f2d94d4dd29bd9b9e188b9d8b62f25e6038f2e4a6ed6c6'
+    'df9d6b5b65bd8a70c6c2ab2e6db99948015e9312abe84796afcaa453a77894fc'
+    'd0ed0b6098a35812a567ac590da7bc2900aef2daa32e6ff2cb2925bcb7bb292e'
+)
+
+prepare(){
+    tar xzf xkanon-071209.tar.gz xkanon/ayusys.ja.po
+    mv xkanon/ayusys.ja.po $pkgname/ayusys_gtk2.ja.po
+    rm -rf xkanon/
+    cd $pkgname
+    patch -p1 -i ../Makefile.in.patch
+}
+
+build(){
+    cd $pkgname
+    ./configure --prefix=/usr
+    make
+}
+
+package(){
+    cd $pkgname
+    make PREFIX="$pkgdir/usr" install
+}
+
